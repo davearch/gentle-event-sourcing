@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-load-balancer
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-load-balancer
+  template:
+    metadata:
+      labels:
+        app: nginx-load-balancer
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+      volumes:
+      - name: config-volume
+        configMap:
+          name: nginx-config
+
