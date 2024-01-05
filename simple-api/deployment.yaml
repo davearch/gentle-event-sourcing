@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-api-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-api-app
+  template:
+    metadata:
+      labels:
+        app: simple-api-app
+    spec:
+      containers:
+      - name: simple-api-app
+        image: localhost:32000/dev/simple-api-app
+        ports:
+        - containerPort: 5000
+
