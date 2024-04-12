@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install Flask
+RUN pip install Flask confluent_kafka
 
 EXPOSE 5000
 
